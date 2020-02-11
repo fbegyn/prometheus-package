@@ -8,8 +8,3 @@ The package can be built with the following command:
 ```
 
 This command will build a `prometheus.deb`.
-
-## TODO
-
-Figure out a way to automatically uptake the version number in `nfpm.yaml` to match the downloaded
-version.

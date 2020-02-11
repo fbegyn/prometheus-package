@@ -2,7 +2,7 @@
 name: "prometheus"
 arch: "amd64"
 platform: "linux"
-version: "v2.15.2"
+version: "vx.y.z"
 section: "default"
 priority: "extra"
 maintainer: "Francis Begyn <francis@begyn.be>"
