@@ -2,7 +2,7 @@
 
 ./fetch.sh $1 $2
 
-nfpm pkg --target prometheus.deb
+nfpm pkg --target prometheus-$1.$2.deb
 
 rm -rf ./bin
 rm -rf ./consoles
