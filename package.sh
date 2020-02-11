@@ -13,3 +13,5 @@ rm -rf ./prometheus.yml
 
 rm -rf ./prometheus-$1.$2.tar.gz
 rm -rf ./prometheus-$1.$2
+
+git checkout -- nfpm.yaml
