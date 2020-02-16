@@ -1,6 +1,6 @@
 # Prometheus package
 
-This repo is designed to package prometehus based upon the Github releases.
+This repo is designed to package prometheus based upon the Github releases.
 The package can be built with the following command:
 
 ```
