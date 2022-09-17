@@ -1,32 +1,41 @@
-# nfpm example config file
 name: "prometheus"
 arch: "amd64"
 platform: "linux"
 version: "vx.y.z"
 section: "default"
+release: 1
 priority: "extra"
 maintainer: "Francis Begyn <francis@begyn.be>"
 description: |
   Prometheus time series monitoring system
-vendor: "Francis"
+vendor: "prometheus"
 homepage: "https://github.com/prometheus/prometheus"
-license: "MIT"
-bindir: "/usr/sbin"
-files:
-  ./prometheus.service: "/etc/systemd/system/prometheus.service"
-  ./bin/prometheus: "/usr/sbin/prometheus"
-  ./bin/promtool: "/usr/sbin/promtool"
-  ./consoles/*: "/etc/prometheus/consoles/"
-  ./console_libraries/*: "/etc/prometheus/console_libraries/*"
-config_files:
-  ./prometheus.yml: "/etc/prometheus/prometheus.yml"
-overrides:
-  rpm:
-    scripts:
-      preinstall: ./scripts/preinstall.sh
-      postremove: ./scripts/postremove.sh
-  deb:
-    scripts:
-      postinstall: ./scripts/postinstall.sh
-      preremove: ./scripts/preremove.sh
-      postremove: ./scripts/postremove.sh
+license: "Apache License 2.0"
+contents:
+  - src: ./prometheus.service
+    dst: /etc/systemd/system/prometheus.service
+
+  - src: ./prometheus
+    dst: /usr/sbin/prometheus
+  - src: ./promtool
+    dst: /usr/sbin/promtool
+
+  - src: ./consoles
+    dst: /usr/share/prometheus/consoles
+  - src: /usr/share/prometheus/consoles
+    dst: /etc/prometheus/consoles
+    type: symlink
+
+  - src: ./console_libraries
+    dst: /usr/share/prometheus/console_libraries
+  - src: /usr/share/prometheus/console_libraries
+    dst: /etc/prometheus/console_libraries
+    type: symlink
+
+  - src: ./prometheus.yml
+    dst: /etc/prometheus/prometheus.yml
+    type: config|noreplace
+scripts:
+  postinstall: ./scripts/postinstall.sh
+  preremove: ./scripts/preremove.sh
+  postremove: ./scripts/postremove.sh
